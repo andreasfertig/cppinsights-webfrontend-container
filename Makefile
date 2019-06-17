@@ -1,23 +1,34 @@
 all: build
 
-build: #insights
+build: latest
 	@echo "Building the container..."
-	@docker build -t cppinsights-webfrontend `pwd`
+	@docker build -t cppinsights-webfrontend-container `pwd`
+	@touch urls.db
 	@echo "Done."
-	@echo "You still required to C++ Insights container!"
+	@echo "You still required the C++ Insights container!"
 	@echo "Use make start to start the container, make stop to stop it."
 
-start:
-	@docker run --rm -p 127.0.0.1:5000:5000 -v /var/run/docker.sock:/var/run/docker.sock --name=cppinsights-webfrontend -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp -d cppinsights-webfrontend
-
-stop:
-	@docker stop cppinsights-webfrontend
-
-logs:
-	@docker logs -f cppinsights-webfrontend
-
-insights: clean
-	wget https://github.com/andreasfertig/cppinsights-web/archive/master.zip
+latest: clean
+	@wget https://github.com/andreasfertig/cppinsights-web/archive/latest.zip
 
 clean:
-	rm -f master.zip* insights
+	@rm -f latest.zip
+
+get:
+	@echo "Pulling the latest 'andreasfertig/cppinsights-container'..."
+	@docker pull andreasfertig/cppinsights-container
+	@echo "Pulling the latest 'andreasfertig/cppinsights-webfrontend-container'..."
+	@docker pull andreasfertig/cppinsights-webfrontend-container
+	@touch urls.db
+	@chmod 0666 urls.db
+	@echo "You now can use 'make start' to fire up your local C++ Insights installation."
+
+start:
+	@docker run --rm -p 127.0.0.1:5000:5000 -v /var/run/docker.sock:/var/run/docker.sock -v $(PWD)/urls.db:/urls.db --name=cppinsights-webfrontend-container -v /tmp:/tmp -d andreasfertig/cppinsights-webfrontend-container
+
+stop:
+	@docker stop andreasfertig/cppinsights-webfrontend-container
+
+logs:
+	@docker logs -f andreasfertig/cppinsights-webfrontend-container
+

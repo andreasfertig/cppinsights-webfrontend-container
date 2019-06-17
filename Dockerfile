@@ -2,14 +2,14 @@ FROM ubuntu:18.04
 
 LABEL maintainer "Andreas Fertig"
 
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl wget gnupg unzip python3 python3-pip apt-transport-https \
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl wget gnupg unzip python3 python3-pip python3-setuptools libsqlite3-dev apt-transport-https \
     ca-certificates \
     curl \
     software-properties-common && apt-get update
 
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
-RuN add-apt-repository \
+RUN add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
@@ -20,8 +20,11 @@ RUN useradd insights \
     && mkdir /home/insights \
     && chown -R insights:insights /home/insights
 
-RUN cd /tmp && wget https://github.com/andreasfertig/cppinsights-web/archive/latest.zip && \
+COPY latest.zip /tmp
+
+RUN cd /tmp && \
 	unzip latest.zip && \
+    ls -l cppinsights-web-latest && \
     mv cppinsights-web-latest /home/insights/cppinsights-web && \
     rm -rf /tmp/* && \
     chown -R insights:insights /home/insights
