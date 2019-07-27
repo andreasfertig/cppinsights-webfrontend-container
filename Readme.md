@@ -5,10 +5,12 @@ This is some what of a docker in docker setup.
 You have to have this container which hosts the C++ Insights Web Frontend part and the container which contains the [C++
 Insights binary](https://github.com/andreasfertig/cppinsights-container). Both installed on your local machine.
 
-Then run `make build` to get all the resources and build the docker image of this repo. You have to take care of build
+Then run `make get` to download the latest pre-built docker image from [DockerHub](https://hub.docker.com/r/andreasfertig/cppinsights-webfrontend-container) as well as the required [cppinsights-container](https://hub.docker.com/r/andreasfertig/cppinsights-container).
+
+Alternatively you can build the image yourself, as Travis-CI does. Run `make build` to get all the resources and build the docker image of this repo. You have to take care of build
 the image of the C++ Insights docker.
 
-After that you can run `make start` to start the web part. Give it a few seconds to boot up. After that C++ Insights is
+After either of these two steps, you can run `make start` to start the web part. Give it a few seconds to boot up. After that C++ Insights is
 reachable under 127.0.0.1:5000.
 
 You can see what is going on with `make logs` and stop the container with `make stop`
