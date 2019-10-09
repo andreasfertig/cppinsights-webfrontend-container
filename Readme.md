@@ -1,5 +1,11 @@
 # C++ Insights: Web Front-End Docker Container
 
+[![Build Status](https://api.travis-ci.org/andreasfertig/cppinsights-webfrontend-container.svg?branch=master)](https://travis-ci.org/andreasfertig/cppinsights-webfrontend-container)
+[![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://cppinsights.io)
+
+[![Patreon](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://patreon.com/cppinsights)
+
+
 This is some what of a docker in docker setup.
 
 You have to have this container which hosts the C++ Insights Web Frontend part and the container which contains the [C++
@@ -11,7 +17,7 @@ Alternatively you can build the image yourself, as Travis-CI does. Run `make bui
 the image of the C++ Insights docker.
 
 After either of these two steps, you can run `make start` to start the web part. Give it a few seconds to boot up. After that C++ Insights is
-reachable under 127.0.0.1:5000.
+reachable under `127.0.0.1:5000`.
 
 You can see what is going on with `make logs` and stop the container with `make stop`
 

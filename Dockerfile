@@ -24,7 +24,6 @@ COPY latest.zip /tmp
 
 RUN cd /tmp && \
 	unzip latest.zip && \
-    ls -l cppinsights-web-latest && \
     mv cppinsights-web-latest /home/insights/cppinsights-web && \
     rm -rf /tmp/* && \
     chown -R insights:insights /home/insights
