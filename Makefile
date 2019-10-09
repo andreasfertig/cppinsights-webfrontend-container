@@ -15,7 +15,6 @@ clean:
 	@rm -f latest.zip
 
 get:
-	@make stop
 	@echo "Pulling the latest 'andreasfertig/cppinsights-container'..."
 	@docker pull andreasfertig/cppinsights-container
 	@echo "Pulling the latest 'andreasfertig/cppinsights-webfrontend-container'..."
