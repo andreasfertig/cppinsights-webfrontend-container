@@ -1,6 +1,6 @@
 # C++ Insights: Web Front-End Docker Container
 
-[![Build Status](https://api.travis-ci.org/andreasfertig/cppinsights-webfrontend-container.svg?branch=master)](https://travis-ci.org/andreasfertig/cppinsights-webfrontend-container)
+[![Build Status](https://github.com/andreasfertig/cppinsights-webfrontend-container/workflows/ci/badge.svg)](https://github.com/andreasfertig/cppinsights-webfrontend-container/actions/)
 [![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://cppinsights.io)
 
 [![Patreon](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://patreon.com/cppinsights)
@@ -13,7 +13,7 @@ Insights binary](https://github.com/andreasfertig/cppinsights-container). Both i
 
 Then run `make get` to download the latest pre-built docker image from [DockerHub](https://hub.docker.com/r/andreasfertig/cppinsights-webfrontend-container) as well as the required [cppinsights-container](https://hub.docker.com/r/andreasfertig/cppinsights-container).
 
-Alternatively you can build the image yourself, as Travis-CI does. Run `make build` to get all the resources and build the docker image of this repo. You have to take care of build
+Alternatively you can build the image yourself, as GitHub Actions do. Run `make build` to get all the resources and build the docker image of this repo. You have to take care of build
 the image of the C++ Insights docker.
 
 After either of these two steps, you can run `make start` to start the web part. Give it a few seconds to boot up. After that C++ Insights is
