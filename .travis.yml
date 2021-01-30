@@ -1,9 +1,0 @@
-script:
-- make build
-- docker images
-- |
-  if [[ "${TRAVIS_BRANCH}" = "master" ]] && [[ "${TRAVIS_PULL_REQUEST}" == "false" ]]; then
-    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    docker tag cppinsights-webfrontend-container $DOCKER_USERNAME/cppinsights-webfrontend-container
-    docker push $DOCKER_USERNAME/cppinsights-webfrontend-container
-  fi
