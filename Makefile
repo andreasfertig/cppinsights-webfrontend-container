@@ -24,7 +24,7 @@ get:
 	@echo "You now can use 'make start' to fire up your local C++ Insights installation."
 
 start:
-	@docker run --rm -p 127.0.0.1:5000:5000 -v /var/run/docker.sock:/var/run/docker.sock -v $(PWD)/urls.db:/urls.db --name=cppinsights-webfrontend-container -v /tmp:/tmp -d andreasfertig/cppinsights-webfrontend-container
+	@docker run --rm -p 127.0.0.1:5001:5000 -e DOCKER_DEFAULT_PLATFORM="${DOCKER_DEFAULT_PLATFORM}" -v /var/run/docker.sock:/var/run/docker.sock -v $(PWD)/urls.db:/urls.db --name=cppinsights-webfrontend-container -v /tmp:/tmp -d andreasfertig/cppinsights-webfrontend-container
 
 stop:
 	@docker stop cppinsights-webfrontend-container
