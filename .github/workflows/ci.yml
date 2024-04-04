@@ -11,17 +11,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Build the Docker image
-        run: |
-            make build
-            docker images
+      - uses: docker/setup-qemu-action@v3
+        name: Set up QEMU
+
+      - uses: docker/setup-buildx-action@v3
+        name: Set up Docker Buildx
 
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u andreasfertig --password-stdin
 
-      - name: Push the tagged Docker image
+      - name: Build and push the Docker image
         run: |
-            docker tag cppinsights-webfrontend-container andreasfertig/cppinsights-webfrontend-container
-            docker push andreasfertig/cppinsights-webfrontend-container
+            make build ARGS=--push
+            docker images
+

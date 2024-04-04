@@ -1,8 +1,11 @@
 all: build
 
+ARGS :=
+PLATFORM := linux/arm64,linux/amd64
+
 build: latest
 	@echo "Building the container..."
-	@docker build -t cppinsights-webfrontend-container `pwd`
+	@docker buildx build $(ARGS) --platform $(PLATFORM) -t andreasfertig/cppinsights-webfrontend-container `pwd`
 	@touch urls.db
 	@echo "Done."
 	@echo "You still required the C++ Insights container!"
